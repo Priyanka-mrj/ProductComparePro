@@ -24,6 +24,7 @@ const AppRoutes = () => (
         <Sidebar />
       <Content>
         <Routes>
+          <Route path="/" element={<ProductDetailsPage />} /> 
           <Route path={PATH.PRODUCTS_DETAILS} element={<ProductDetailsPage />} />
           <Route path={PATH.COMPARE_PRODUCTS} element={<CompareProductsPage />} />
         </Routes>
