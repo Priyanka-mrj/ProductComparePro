@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AppRoutes from './routes';
+import AddMoreProductsModal from './components/AddMoreProductsModal';
 
-function App() {
+const App = () => {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleAddProducts = (products) => {
+    setSelectedProducts([...selectedProducts, ...products]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppRoutes
+        selectedProducts={selectedProducts}
+        setIsModalVisible={setIsModalVisible}
+      />
+      <AddMoreProductsModal
+        visible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        onAddProducts={handleAddProducts}
+      />
+    </>
   );
-}
+};
 
 export default App;
